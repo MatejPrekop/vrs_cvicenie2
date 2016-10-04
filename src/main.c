@@ -83,7 +83,12 @@ int main(void)
   GPIOC->PUPDR &= ~(uint32_t) 0b11<<26;
 
   uint8_t button;
-  int x;
+  int x=0;
+  int cState=0;
+  #define S0 0
+  #define S1 1
+  #define S2 2
+
 
   /* Infinite loop */
   while (1)
@@ -94,14 +99,14 @@ int main(void)
 	  //GPIOA->BSRRL |= (uint32_t) 0b01<<5;
 	  //GPIOA->BSRRH |= (uint32_t) 0b01<<5;
 	  //GPIOA->ODR ^= (uint32_t) 0b01<<5;
-	  /*if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
+	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
 	    {
 	      button = (uint8_t)Bit_RESET;
 	    }
 	    else
 	    {
 	      button = (uint8_t)Bit_SET;
-	    }*/
+	    }
 	  /*for(x=0;x<100000; x++)
 	  {
 
@@ -112,6 +117,7 @@ int main(void)
 	  }
 	  GPIOA->ODR &= ~(uint32_t) 0b01<<5;
 	  */
+	  /*
 	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
 	  	    {
 	  	      button = (uint8_t)Bit_RESET;
@@ -122,6 +128,21 @@ int main(void)
 	  	    }
 	  if (button==1){GPIOA->ODR |= (uint32_t) 0b01<<5;}
 	  else	{GPIOA->ODR &= ~(uint32_t) 0b01<<5;}
+	  */
+	  switch(cState)
+	  {
+	  	  case S0: if(button==1){cState=S1;x=0;} break;
+	  	  case S1: if(button==1){
+	  		  	  if(x<10){cState=S1;x++;}
+	  		  	  else{cState=S2;}
+	  	  	  }
+	  		  else{cState=S0;}
+	  	  	  break;
+	  	  case S2: if(button==0){
+	  		  cState=S0;
+	  		  GPIOA->ODR ^= (uint32_t) 0b01<<5;
+	  	  }
+	  }
 
 
   }
