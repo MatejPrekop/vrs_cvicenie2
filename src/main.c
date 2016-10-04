@@ -90,8 +90,10 @@ int main(void)
   while (1)
   {
 	//i++;
-	  GPIOA->ODR |= (uint32_t) 0b01<<5;
-	  GPIOA->ODR &= ~(uint32_t) 0b01<<5;
+	  //GPIOA->ODR |= (uint32_t) 0b01<<5;
+	  //GPIOA->ODR &= ~(uint32_t) 0b01<<5;
+	  GPIOA->BSRRL |= (uint32_t) 0b01<<5;
+	  GPIOA->BSRRH |= (uint32_t) 0b01<<5;
   }
   return 0;
 }
