@@ -49,7 +49,7 @@ SOFTWARE.
 int main(void)
 {
   int i = 0;
-
+int defrgrgtghtgr;
   /**
   *  IMPORTANT NOTE!
   *  See the <system_*.c> file and how/if the SystemInit() function updates 
