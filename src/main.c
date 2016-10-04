@@ -71,18 +71,16 @@ int main(void)
   /* TODO - Add your application code here */
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
 
   GPIOA->MODER |= (uint32_t) 0b01<<10;
   GPIOA->OTYPER &= ~(uint32_t) 0b01<<5;
   GPIOA->PUPDR |= (uint32_t) 0b01<<10;
   GPIOA->OSPEEDR |=(uint32_t) 0b11<<10;
 
-
-/*
-  GPIOA->BSRRL |= (uint32_t) 0b01<<5;
-  GPIOA->BSRRH |= (uint32_t) 0b01<<5;
-*/
-
+  GPIOC->MODER &= ~(uint32_t) 0b11<<26;
+  GPIOC->OTYPER &= ~(uint32_t) 0b01<<13;
+  GPIOC->PUPDR &= ~(uint32_t) 0b11<<26;
 
 
 
@@ -94,7 +92,7 @@ int main(void)
 	  //GPIOA->ODR &= ~(uint32_t) 0b01<<5;
 	  //GPIOA->BSRRL |= (uint32_t) 0b01<<5;
 	  //GPIOA->BSRRH |= (uint32_t) 0b01<<5;
-	  GPIOA->ODR ^= (uint32_t) 0b01<<5;
+	  //GPIOA->ODR ^= (uint32_t) 0b01<<5;
   }
   return 0;
 }
