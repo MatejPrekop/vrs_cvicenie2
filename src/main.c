@@ -102,7 +102,7 @@ int main(void)
 	    {
 	      button = (uint8_t)Bit_SET;
 	    }*/
-	  for(x=0;x<100000; x++)
+	  /*for(x=0;x<100000; x++)
 	  {
 
 	  }
@@ -111,6 +111,18 @@ int main(void)
 
 	  }
 	  GPIOA->ODR &= ~(uint32_t) 0b01<<5;
+	  */
+	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
+	  	    {
+	  	      button = (uint8_t)Bit_RESET;
+	  	    }
+	  	    else
+	  	    {
+	  	      button = (uint8_t)Bit_SET;
+	  	    }
+	  if (button==1){GPIOA->ODR |= (uint32_t) 0b01<<5;}
+	  else	{GPIOA->ODR &= ~(uint32_t) 0b01<<5;}
+
 
   }
   return 0;
