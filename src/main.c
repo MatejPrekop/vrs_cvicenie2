@@ -83,7 +83,7 @@ int main(void)
   GPIOC->PUPDR &= ~(uint32_t) 0b11<<26;
 
   uint8_t button;
-
+  int x;
 
   /* Infinite loop */
   while (1)
@@ -94,14 +94,23 @@ int main(void)
 	  //GPIOA->BSRRL |= (uint32_t) 0b01<<5;
 	  //GPIOA->BSRRH |= (uint32_t) 0b01<<5;
 	  //GPIOA->ODR ^= (uint32_t) 0b01<<5;
-	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
+	  /*if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
 	    {
 	      button = (uint8_t)Bit_RESET;
 	    }
 	    else
 	    {
 	      button = (uint8_t)Bit_SET;
-	    }
+	    }*/
+	  for(x=0;x<100000; x++)
+	  {
+
+	  }
+	  GPIOA->ODR |= (uint32_t) 0b01<<5;
+	  for(x=0;x<100000; x++){
+
+	  }
+	  GPIOA->ODR &= ~(uint32_t) 0b01<<5;
 
   }
   return 0;
