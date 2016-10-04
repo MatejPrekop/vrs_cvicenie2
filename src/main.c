@@ -73,6 +73,7 @@ int main(void)
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 
   GPIOA->MODER |= (uint32_t) 0b01<<10;
+  GPIOA->OTYPER &= ~(uint32_t) 0b01<<5;
   GPIOA->PUPDR |= (uint32_t) 0b01<<10;
   GPIOA->OSPEEDR |=(uint32_t) 0b11<<10;
 
