@@ -91,14 +91,23 @@ int main(void)
     gpioInitStrucTlac.GPIO_Pin = GPIO_Pin_13;
     gpioInitStrucTlac.GPIO_Speed = GPIO_Speed_40MHz;
 
-    //GPIO_Init(GPIOC, &gpioInitStrucTlac);
+    GPIO_Init(GPIOC, &gpioInitStrucTlac);
 
-
+    uint8_t buttonState;
+    int x;
   /* Infinite loop */
-  while (1)
-  {
+	while (1) {
+		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
 
-  }
+		for (x = 0; x < 100000; x++) {
+
+		}
+		GPIO_SetBits(GPIOA, GPIO_Pin_5);
+		for (x = 0; x < 100000; x++) {
+
+		}
+		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+	}
   return 0;
 }
 
