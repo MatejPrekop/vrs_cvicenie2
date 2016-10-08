@@ -99,6 +99,7 @@ int main(void)
 	while (1) {
 		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
 
+		/*
 		for (x = 0; x < 100000; x++) {
 
 		}
@@ -107,6 +108,13 @@ int main(void)
 
 		}
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+		*/
+
+		if (buttonState == 0) {
+			GPIO_SetBits(GPIOA, GPIO_Pin_5);
+		} else {
+			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+		}
 	}
   return 0;
 }
