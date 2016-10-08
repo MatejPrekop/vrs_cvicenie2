@@ -125,6 +125,7 @@ int main(void)
 			if (buttonState == 1) {
 				cState = S1;
 				x = 0;
+				GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 			}
 			break;
 		case S1:
@@ -142,7 +143,7 @@ int main(void)
 		case S2:
 			if (buttonState == 0) {
 				cState = S0;
-				GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
+				//GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 			}
 		}
 	}
