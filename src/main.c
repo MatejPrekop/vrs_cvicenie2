@@ -81,12 +81,9 @@ int main(void)
     gpioInitStruc.GPIO_PuPd = GPIO_PuPd_UP;
     gpioInitStruc.GPIO_Speed = GPIO_Speed_40MHz;
 
-    /*
+
     GPIO_Init(GPIOA, &gpioInitStruc);
     GPIO_SetBits(GPIOA, GPIO_Pin_5);
-*/
-
-
 
   /* Infinite loop */
   while (1)
