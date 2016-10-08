@@ -120,32 +120,7 @@ int main(void)
 			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 		}
 */
-		switch (cState) {
-		case S0:
-			if (buttonState == 1) {
-				cState = S1;
-				x = 0;
-				GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
-			}
-			break;
-		case S1:
-			if (buttonState == 1) {
-				if (x < 30) {
-					cState = S1;
-					x++;
-				} else {
-					cState = S2;
-				}
-			} else {
-				cState = S0;
-			}
-			break;
-		case S2:
-			if (buttonState == 0) {
-				cState = S0;
-				//GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
-			}
-		}
+
 	}
   return 0;
 }
