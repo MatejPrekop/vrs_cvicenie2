@@ -71,79 +71,26 @@ int main(void)
   /* TODO - Add your application code here */
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
+ // RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
 
-  GPIOA->MODER |= (uint32_t) 0b01<<10;
-  GPIOA->OTYPER &= ~(uint32_t) 0b01<<5;
-  GPIOA->PUPDR |= (uint32_t) 0b01<<10;
-  GPIOA->OSPEEDR |=(uint32_t) 0b11<<10;
+    GPIO_InitTypeDef gpioInitStruc;
 
-  GPIOC->MODER &= ~(uint32_t) 0b11<<26;
-  GPIOC->OTYPER &= ~(uint32_t) 0b01<<13;
-  GPIOC->PUPDR &= ~(uint32_t) 0b11<<26;
+    gpioInitStruc.GPIO_Pin = GPIO_Pin_5;
+    gpioInitStruc.GPIO_Mode = GPIO_Mode_OUT;
+    gpioInitStruc.GPIO_OType = GPIO_OType_PP;
+    gpioInitStruc.GPIO_PuPd = GPIO_PuPd_UP;
+    gpioInitStruc.GPIO_Speed = GPIO_Speed_40MHz;
 
-  uint8_t button;
-  int x=0;
-  int cState=0;
-  #define S0 0
-  #define S1 1
-  #define S2 2
+    /*
+    GPIO_Init(GPIOA, &gpioInitStruc);
+    GPIO_SetBits(GPIOA, GPIO_Pin_5);
+*/
 
-//test vrs3
+
+
   /* Infinite loop */
   while (1)
   {
-	//i++;
-	  //GPIOA->ODR |= (uint32_t) 0b01<<5;
-	  //GPIOA->ODR &= ~(uint32_t) 0b01<<5;
-	  //GPIOA->BSRRL |= (uint32_t) 0b01<<5;
-	  //GPIOA->BSRRH |= (uint32_t) 0b01<<5;
-	  //GPIOA->ODR ^= (uint32_t) 0b01<<5;
-	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
-	    {
-	      button = (uint8_t)Bit_RESET;
-	    }
-	    else
-	    {
-	      button = (uint8_t)Bit_SET;
-	    }
-	  /*for(x=0;x<100000; x++)
-	  {
-
-	  }
-	  GPIOA->ODR |= (uint32_t) 0b01<<5;
-	  for(x=0;x<100000; x++){
-
-	  }
-	  GPIOA->ODR &= ~(uint32_t) 0b01<<5;
-	  */
-	  /*
-	  if ((GPIOC->IDR & GPIO_Pin_13) != (uint32_t)Bit_RESET)
-	  	    {
-	  	      button = (uint8_t)Bit_RESET;
-	  	    }
-	  	    else
-	  	    {
-	  	      button = (uint8_t)Bit_SET;
-	  	    }
-	  if (button==1){GPIOA->ODR |= (uint32_t) 0b01<<5;}
-	  else	{GPIOA->ODR &= ~(uint32_t) 0b01<<5;}
-	  */
-	  switch(cState)
-	  {
-	  	  case S0: if(button==1){cState=S1;x=0;} break;
-	  	  case S1: if(button==1){
-	  		  	  if(x<10){cState=S1;x++;}
-	  		  	  else{cState=S2;}
-	  	  	  }
-	  		  else{cState=S0;}
-	  	  	  break;
-	  	  case S2: if(button==0){
-	  		  cState=S0;
-	  		  GPIOA->ODR ^= (uint32_t) 0b01<<5;
-	  	  }
-	  }
-
 
   }
   return 0;
