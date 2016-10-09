@@ -102,8 +102,9 @@ int main(void)
   /* Infinite loop */
 	while (1) {
 		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
-		GPIO_SetBits(GPIOA, GPIO_Pin_5); //Zapinanie LED
-		GPIO_ResetBits(GPIOA, GPIO_Pin_5); //Vypinanie LED
+		//GPIO_SetBits(GPIOA, GPIO_Pin_5); //Zapinanie LED
+		//GPIO_ResetBits(GPIOA, GPIO_Pin_5); //Vypinanie LED
+		GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 		/*
 		 for (x = 0; x < 100000; x++) {
 
