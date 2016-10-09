@@ -82,8 +82,8 @@ int main(void)
     gpioInitStruc.GPIO_Speed = GPIO_Speed_40MHz;
 
     GPIO_Init(GPIOA, &gpioInitStruc);
-    GPIO_SetBits(GPIOA, GPIO_Pin_5);
-
+   // GPIO_SetBits(GPIOA, GPIO_Pin_5);
+/*
     GPIO_InitTypeDef gpioInitStrucTlac;
 
     gpioInitStrucTlac.GPIO_Mode = GPIO_Mode_IN;
@@ -92,7 +92,7 @@ int main(void)
     gpioInitStrucTlac.GPIO_Speed = GPIO_Speed_40MHz;
 
     GPIO_Init(GPIOC, &gpioInitStrucTlac);
-
+*/
 	uint8_t buttonState;
 	int x;
 	int cState = 0;
@@ -102,9 +102,10 @@ int main(void)
   /* Infinite loop */
 	while (1) {
 		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
-
+		GPIO_SetBits(GPIOA, GPIO_Pin_5); //Zapinanie LED
+		GPIO_ResetBits(GPIOA, GPIO_Pin_5); //Vypinanie LED
 		/*
-		for (x = 0; x < 100000; x++) {
+		 for (x = 0; x < 100000; x++) {
 
 		}
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
@@ -120,6 +121,7 @@ int main(void)
 			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 		}
 */
+	/*
 		switch (cState) {
 		case S0:
 			if (buttonState == 1) {
@@ -146,6 +148,7 @@ int main(void)
 				//GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 			}
 		}
+		*/
 	}
   return 0;
 }
