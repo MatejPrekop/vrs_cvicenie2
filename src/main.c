@@ -46,7 +46,7 @@ SOFTWARE.
 **
 **===========================================================================
 */
-//---------vrs_cv2_Prekop_Komorowski-----------
+//---------vrs_cv4_Prekop_Komorowski-----------
 int main(void)
 {
   int i = 0;
@@ -70,87 +70,10 @@ int main(void)
 
   /* TODO - Add your application code here */
 
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
 
-    GPIO_InitTypeDef gpioInitStruc;
-
-    gpioInitStruc.GPIO_Pin = GPIO_Pin_5;
-    gpioInitStruc.GPIO_Mode = GPIO_Mode_OUT;
-    gpioInitStruc.GPIO_OType = GPIO_OType_PP;
-    gpioInitStruc.GPIO_PuPd = GPIO_PuPd_UP;
-    gpioInitStruc.GPIO_Speed = GPIO_Speed_40MHz;
-
-    GPIO_Init(GPIOA, &gpioInitStruc);
-   // GPIO_SetBits(GPIOA, GPIO_Pin_5);
-/*
-    GPIO_InitTypeDef gpioInitStrucTlac;
-
-    gpioInitStrucTlac.GPIO_Mode = GPIO_Mode_IN;
-    gpioInitStrucTlac.GPIO_OType = GPIO_OType_PP;
-    gpioInitStrucTlac.GPIO_Pin = GPIO_Pin_13;
-    gpioInitStrucTlac.GPIO_Speed = GPIO_Speed_40MHz;
-
-    GPIO_Init(GPIOC, &gpioInitStrucTlac);
-*/
-	uint8_t buttonState;
-	int x;
-	int cState = 0;
-#define S0 0
-#define S1 1
-#define S2 2
-  /* Infinite loop */
 	while (1) {
-		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
-		//GPIO_SetBits(GPIOA, GPIO_Pin_5); //Zapinanie LED
-		//GPIO_ResetBits(GPIOA, GPIO_Pin_5); //Vypinanie LED
-		GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
-		/*
-		 for (x = 0; x < 100000; x++) {
 
-		}
-		GPIO_SetBits(GPIOA, GPIO_Pin_5);
-		for (x = 0; x < 100000; x++) {
 
-		}
-		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
-		*/
-/*
-		if (buttonState == 0) {
-			GPIO_SetBits(GPIOA, GPIO_Pin_5);
-		} else {
-			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
-		}
-*/
-	/*
-		switch (cState) {
-		case S0:
-			if (buttonState == 1) {
-				cState = S1;
-				x = 0;
-				GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
-			}
-			break;
-		case S1:
-			if (buttonState == 1) {
-				if (x < 30) {
-					cState = S1;
-					x++;
-				} else {
-					cState = S2;
-				}
-			} else {
-				cState = S0;
-			}
-			break;
-		case S2:
-			if (buttonState == 0) {
-				cState = S0;
-				//GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
-			}
-		}
-		*/
-	}
   return 0;
 }
 
