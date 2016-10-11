@@ -127,10 +127,33 @@ int main(void)
 		AD_value = ADC_GetConversionValue(ADC1);
 		return AD_value;
 	}
+	adc_init();
+	setLed();
+	int merana_hodnota;
+	int x;
 
 
   /* Infinite loop */
 	while (1) {
+
+		merana_hodnota = konverzia();
+
+		if (merana_hodnota < 1300) {
+			for (x = 0; x < 100000; x++) {
+			}
+			GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
+		}
+		if ((merana_hodnota >= 1300) & (merana_hodnota < 2600)) {
+			for (x = 0; x < 500000; x++) {
+			}
+			GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
+		}
+		if (merana_hodnota >= 2600) {
+			for (x = 0; x < 1000000; x++) {
+			}
+			GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
+		}
+	}
 
 
   return 0;
