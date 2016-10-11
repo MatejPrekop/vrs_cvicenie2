@@ -119,6 +119,15 @@ int main(void)
 		GPIO_Init(GPIOA, &gpioInitStruc);
 	}
 
+	int konverzia(void) {
+		int AD_value;
+		ADC_SoftwareStartConv(ADC1);
+		while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC)) {
+		}
+		AD_value = ADC_GetConversionValue(ADC1);
+		return AD_value;
+	}
+
 
   /* Infinite loop */
 	while (1) {
