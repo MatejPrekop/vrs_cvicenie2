@@ -69,7 +69,7 @@ int main(void)
   */
 
   /* TODO - Add your application code here */
-
+//
 	void adc_init(void) {
 		GPIO_InitTypeDef GPIO_InitStructure;
 		ADC_InitTypeDef ADC_InitStructure;
